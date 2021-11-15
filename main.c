@@ -9,7 +9,7 @@ int k;
 // kd tree structure
 typedef struct node
 {
-    int *point; // To store k dimensional data point
+    int *point; // To store k dimensional point
     struct node *left, *right;
 } node;
 
@@ -59,9 +59,11 @@ bool equal(int arr1[], int arr2[])
 
     return true;
 }
-
+int arr[10000][10000];
+int j = 0;
+int count = 0;
 // recursive search function to find the set of data points in the tree
-bool searchRec(node *root, int point[], int depth)
+bool search(node *root, int point[], int depth)
 {
 
     if (root == NULL)
@@ -71,32 +73,59 @@ bool searchRec(node *root, int point[], int depth)
 
     // current dimenson
     int cd = depth % k;
-
+    for (int i = 0; i < k; i++)
+    {
+        arr[j][i] = root->point[i];
+        // printf("%d ", root->point[i]);
+    }
+    j++;
+    count++;
+    printf("\n");
     // traversing points by comparision with root wrt dimension
     if (point[cd] < root->point[cd])
-        return searchRec(root->left, point, depth + 1);
+        return search(root->left, point, depth + 1);
 
-    return searchRec(root->right, point, depth + 1);
+    return search(root->right, point, depth + 1);
 }
 
 // main search function to search recursively
-bool search(node *root, int point[])
+bool search_main(node *root, int point[])
 {
     // initial depth 0
-    return searchRec(root, point, 0);
+    return search(root, point, 0);
 }
-
+int min(int a, int b)
+{
+    if (a < b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
+}
 int main()
 {
+    // comment the below line if you want an interactive console
+    freopen("input.txt", "r", stdin);
+
+    // for interactive console
     struct node *root = NULL;
     printf("Enter dimnesion : ");
     scanf("%d", &k);
     printf("\n");
+
     int n;
     printf("Enter number of points : ");
     scanf("%d", &n);
     printf("\n");
 
+    int neighbours;
+    printf("Enter number of neighbours : ");
+    scanf("%d", &neighbours);
+    printf("\n");
+    int target[n];
     for (int i = 0; i < n; i++)
     {
         int arr[k];
@@ -106,6 +135,7 @@ int main()
         {
             scanf("%d", &arr[i]);
         }
+        scanf("%d", &target[i]);
         root = insert_main(root, arr);
         printf("\n");
     }
@@ -116,15 +146,25 @@ int main()
     {
         scanf("%d", &find[i]);
     }
-
     printf("\n");
-    if (search(root, find))
+    if (search_main(root, find))
     {
         printf("Found \n ");
     }
     else
     {
         printf("Not found \n");
+    }
+
+    int req = min(neighbours, count);
+    printf("The %d closest data points related to this data point are : \n", neighbours);
+    for (int i = req - 1; i >= 0; i--)
+    {
+        for (int p = 0; p < k; p++)
+        {
+            printf("%d ", arr[i][p]);
+        }
+        printf("\n");
     }
     return 0;
 }
