@@ -31,6 +31,8 @@ struct node_in *create_data(int arr[])
 
     return temp;
 }
+
+// function to push a node in custom stack
 void push(int arr[])
 {
     if (top == NULL)
@@ -48,6 +50,8 @@ void push(int arr[])
     }
     count++;
 }
+
+// function to pop a node in custom stack
 void pop()
 {
     top1 = top;
@@ -67,6 +71,8 @@ void pop()
     top = top1;
     count--;
 }
+
+// dislaying the stack
 void display()
 {
     top1 = top;
@@ -89,11 +95,11 @@ void display()
 // kd tree structure
 typedef struct node
 {
-    int *point; // To store k dimensional point
+    int *point; //  Array To store k dimensional point
     struct node *left, *right;
 } node;
 
-// creating new node
+// Creating new node
 struct node *create(int arr[])
 {
     struct node *temp = (struct node *)calloc(1, sizeof(struct node));
@@ -105,6 +111,7 @@ struct node *create(int arr[])
     return temp;
 }
 
+// Helper function to insert a node in the KD Tree
 struct node *insert(node *root, int point[], int depth)
 {
     // if tree is empty
@@ -123,7 +130,7 @@ struct node *insert(node *root, int point[], int depth)
     return root;
 }
 
-// main insert function to insert a node
+//  Main function to insert a node
 struct node *insert_main(node *root, int point[])
 {
     return insert(root, point, 0);
@@ -140,6 +147,7 @@ bool equal(int arr1[], int arr2[])
     return true;
 }
 
+// Helper function to search a node in the KD Tree
 bool search(node *root, int point[], int depth)
 {
 
@@ -160,7 +168,7 @@ bool search(node *root, int point[], int depth)
     return search(root->right, point, depth + 1);
 }
 
-// main search function to search recursively
+// main function to search
 bool search_main(node *root, int point[])
 {
     // initial depth 0
@@ -184,7 +192,7 @@ int main()
 
     // for interactive console
     struct node *root = NULL;
-    printf("Enter dimnesion : ");
+    printf("Enter dimension : ");
     scanf("%d", &k);
     printf("\n");
 
