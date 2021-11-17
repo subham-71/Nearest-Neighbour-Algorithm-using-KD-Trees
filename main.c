@@ -6,7 +6,7 @@
 
 int k;
 
-// custom stack like data structure to store closest points
+// custom stack like data structure to store nearest neighbors
 struct node_in
 {
     int *point;
