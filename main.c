@@ -6,6 +6,86 @@
 
 int k;
 
+// custom stack like data structure to store closest points
+struct node_in
+{
+    int *point;
+};
+struct node_s
+{
+    struct node_in *info;
+    struct node_s *next;
+};
+struct node_s *top;
+struct node_s *top1;
+struct node_s *temp;
+
+int count = 0;
+
+struct node_in *create_data(int arr[])
+{
+    struct node_in *temp = (struct node_in *)calloc(1, sizeof(struct node_in));
+    temp->point = calloc(k, sizeof(int));
+    for (int i = 0; i < k; i++)
+        temp->point[i] = arr[i];
+
+    return temp;
+}
+void push(int arr[])
+{
+    if (top == NULL)
+    {
+        top = (struct node_s *)malloc(1 * sizeof(struct node_s));
+        top->next = NULL;
+        top->info = create_data(arr);
+    }
+    else
+    {
+        temp = (struct node_s *)malloc(1 * sizeof(struct node_s));
+        temp->next = top;
+        temp->info = create_data(arr);
+        top = temp;
+    }
+    count++;
+}
+void pop()
+{
+    top1 = top;
+
+    if (top1 == NULL)
+    {
+        printf("\n Error : Trying to pop from empty stack \n");
+        return;
+    }
+
+    for (int i = 0; i < k; i++)
+    {
+        printf("%d ", top1->info->point[i]);
+    }
+    printf("\n");
+    top1 = top1->next;
+    top = top1;
+    count--;
+}
+void display()
+{
+    top1 = top;
+
+    if (top1 == NULL)
+    {
+        printf("Stack is empty");
+        return;
+    }
+
+    while (top1 != NULL)
+    {
+        for (int i = 0; i < k; i++)
+            printf("%d ", top1->info->point[i]);
+        printf("\n");
+        top1 = top1->next;
+    }
+}
+
 // kd tree structure
 typedef struct node
 {
@@ -59,10 +139,7 @@ bool equal(int arr1[], int arr2[])
 
     return true;
 }
-int arr[10000][10000];
-int j = 0;
-int count = 0;
-// recursive search function to find the set of data points in the tree
+
 bool search(node *root, int point[], int depth)
 {
 
@@ -73,13 +150,8 @@ bool search(node *root, int point[], int depth)
 
     // current dimenson
     int cd = depth % k;
-    for (int i = 0; i < k; i++)
-    {
-        arr[j][i] = root->point[i];
-        // printf("%d ", root->point[i]);
-    }
-    j++;
-    count++;
+    push(root->point);
+
     printf("\n");
     // traversing points by comparision with root wrt dimension
     if (point[cd] < root->point[cd])
@@ -158,13 +230,9 @@ int main()
 
     int req = min(neighbours, count);
     printf("The %d closest data points related to this data point are : \n", neighbours);
-    for (int i = req - 1; i >= 0; i--)
+    for (int i = 0; i < req; i++)
     {
-        for (int p = 0; p < k; p++)
-        {
-            printf("%d ", arr[i][p]);
-        }
-        printf("\n");
+        pop();
     }
     return 0;
 }
