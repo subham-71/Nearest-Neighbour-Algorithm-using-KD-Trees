@@ -6,7 +6,7 @@
 
 int k;
 
-// custom stack like data structure to store nearest neighbors
+// Custom stack like data structure to store nearest neighbours
 struct node_in
 {
     int *point;
@@ -32,7 +32,7 @@ struct node_in *create_data(int arr[])
     return temp;
 }
 
-// function to push a node in custom stack
+// Function to push node in custom stack
 void push(int arr[])
 {
     if (top == NULL)
@@ -51,7 +51,7 @@ void push(int arr[])
     count++;
 }
 
-// function to pop a node in custom stack
+// Function to pop a node in custom stack
 void pop()
 {
     top1 = top;
@@ -72,7 +72,7 @@ void pop()
     count--;
 }
 
-// dislaying the stack
+// dislaying the elements of stack
 void display()
 {
     top1 = top;
@@ -95,7 +95,7 @@ void display()
 // kd tree structure
 typedef struct node
 {
-    int *point; //  Array To store k dimensional point
+    int *point; //  Array To store k dimensional points
     struct node *left, *right;
 } node;
 
@@ -136,7 +136,7 @@ struct node *insert_main(node *root, int point[])
     return insert(root, point, 0);
 }
 
-// checking if two arrays are equal
+// checking if two arrays are equal or not 
 bool equal(int arr1[], int arr2[])
 {
     // Checking if all elements of array 1 = array 2
@@ -168,7 +168,7 @@ bool search(node *root, int point[], int depth)
     return search(root->right, point, depth + 1);
 }
 
-// main function to search
+// main function to search element 
 bool search_main(node *root, int point[])
 {
     // initial depth 0
