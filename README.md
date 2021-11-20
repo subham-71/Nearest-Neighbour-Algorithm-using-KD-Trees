@@ -23,7 +23,6 @@ The last line contains the data set for which nearest neighbors are to be found
 
 
 For the given input file,
-
 The dataset represents the following : 
 
 1st column : Age of consumer                 (1st dimension)
