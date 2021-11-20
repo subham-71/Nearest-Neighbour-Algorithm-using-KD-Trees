@@ -6,7 +6,7 @@ In this project, we implemented the nearest neigbours algorithm using KD Tree da
 To run the program,
 compile and execute main.c file.
 
-# INPUT
+# Input
 
 The input is in a text format.
 
@@ -33,7 +33,7 @@ The dataset represents the following :
 3rd column (target column) : Whether he/she buys the given product or not (outcome)
 
 
-# OUTPUT
+# Output
 
 The program will give us the number of nearest neighbours for the given data point.
 
