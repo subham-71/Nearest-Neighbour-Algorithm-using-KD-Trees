@@ -19,7 +19,7 @@ The input is in a text format.
 
 Then the data points are input line by line
 
-The last line contains the data set for which nearest neighbors are to be found
+The last line contains the data point for which nearest neighbors are to be found
 
 
 For the given input file,
