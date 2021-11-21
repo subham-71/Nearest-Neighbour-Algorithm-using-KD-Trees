@@ -81,7 +81,7 @@ So, we can see majority of the data points (all in this case) are giving 0 as ou
 So, predicted outcome : 0 which is same as the expected outcome.
 
 
-We also checked like this for other random data points and got an accuracy of  .
+We also checked like this for other random data points and got an accuracy of 80%.
 
 
 
