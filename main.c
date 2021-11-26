@@ -92,7 +92,7 @@ void display()
     }
 }
 
-// kd tree structure
+// KD- tree structure
 typedef struct node
 {
     int *point; //  Array To store k dimensional points
