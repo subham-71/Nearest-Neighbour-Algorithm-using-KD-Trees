@@ -32,7 +32,7 @@ struct node_in *create_data(int arr[])
     return temp;
 }
 
-// Function to push node in custom stack
+// Function to push node in the custom stack
 void push(int arr[])
 {
     if (top == NULL)
